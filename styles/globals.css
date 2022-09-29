@@ -1,0 +1,294 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#feed {
+  margin: 16px auto;
+  display: grid;
+  grid: auto-flow 304px / repeat(4, 300px);
+  gap: 12px;
+  justify-content: center;
+}
+
+#feed article {
+  color: var(--color);
+  fill: currentColor;
+  border-radius: 6px;
+  box-shadow: var(--2dp);
+  background: var(--gradientColor);
+  position: relative;
+}
+
+#feed article:hover {
+  filter: contrast(115%);
+  box-shadow: var(--4dp);
+  transition: var(--elevationTransition);
+  cursor: pointer;
+}
+
+#feed article:nth-child(5n + 1) {
+  grid-column: span 2;
+}
+
+/* Image */
+#feed article:not(:nth-child(5n + 1)) > img {
+  width: 300px;
+  height: 225px;
+  border-radius: 6px 6px 0 0;
+}
+
+#feed article:nth-child(5n + 1) > img {
+  width: 612px;
+  height: 304px;
+  border-radius: inherit;
+}
+
+/* Text */
+#feed article > div:first-of-type {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+#feed article:not(:nth-child(5n + 1)) > div:first-of-type > div {
+  padding: 52px 16px 10px;
+}
+
+#feed article:nth-child(5n + 1) > div:first-of-type > div {
+  padding: 52px 16px 16px;
+}
+
+/* Gradient */
+#feed article > div:first-of-type > div > div:first-child {
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+#feed
+  article:not(:nth-child(5n + 1))
+  > div:first-of-type
+  > div
+  > div:first-child {
+  top: 5px;
+  bottom: 79px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--gradientMidColor) 46%,
+    var(--gradientColor) 100%
+  );
+}
+
+#feed article:nth-child(5n + 1) > div:first-of-type > div > div:first-child {
+  height: calc(100% + 20px);
+  bottom: 0;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--gradientMidColor) 62.5%,
+    var(--gradientColor) 100%
+  );
+}
+
+/* Category */
+#feed article > div:first-of-type > div > div:nth-child(2) {
+  height: 16px;
+  margin: 0 0 12px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+#feed article > div:first-of-type > div > div:nth-child(2) img {
+  width: 16px;
+  height: 16px;
+  margin-inline-end: 8px;
+}
+
+#feed article > div:first-of-type > div > div:nth-child(2) a {
+  font-size: 12px;
+}
+
+/* Title */
+#feed article > div:first-of-type > div > a {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+
+  margin: 0 0 40px;
+  display: block;
+  position: relative;
+  pointer-events: none;
+}
+
+#feed article > div:first-of-type > div > a:focus-within {
+  pointer-events: none;
+}
+
+/* Centralize */
+#feed article > span,
+#feed article > button:first-of-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content Indicator */
+#feed article > span {
+  padding: 2px;
+  border-radius: 4px;
+  background: var(--gradientMidColor);
+  cursor: default;
+
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+/* Hide Story Button */
+#feed article > button:first-of-type {
+  color: white;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.54);
+
+  visibility: hidden;
+  opacity: 0;
+
+  position: absolute;
+  top: 12px;
+  right: 16px;
+}
+
+#feed article > button:first-of-type:hover {
+  background: rgba(0, 0, 0, 0.62);
+}
+
+#feed article:hover > button:first-of-type {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+/* HideStory */
+#feed article dialog {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+#feed article dialog > div {
+  width: inherit;
+  height: inherit;
+  box-shadow: var(--2dp);
+  border-radius: inherit;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+/* Reaction */
+#feed #reaction {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+}
+
+#reaction > button {
+  color: currentColor;
+  padding: 0;
+  padding-right: 8px;
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Emoji Icon */
+#reaction > button svg:last-child {
+  display: none;
+}
+
+#reaction > button:hover svg:first-child {
+  display: none;
+}
+
+#reaction > button:hover svg:last-child {
+  display: block;
+}
+
+#reaction > button > div {
+  background: var(--emoji);
+  width: 16px;
+  height: 18px;
+  background-size: 96px;
+  transform: scale(1.25);
+}
+
+#reaction > button > div:last-of-type {
+  margin-inline-end: 4px;
+}
+
+#reaction > button > div[datatype="love"] {
+  background-position: -16px 0;
+}
+#reaction > button > div[datatype="surprised"] {
+  background-position: -32px 0;
+}
+
+#reaction > button > div[datatype="thinking"] {
+  background-position: -48px 0;
+}
+
+#reaction > button > div[datatype="sad"] {
+  background-position: -64px 0;
+}
+
+#reaction > button > div[datatype="angry"] {
+  background-position: -80px 0;
+}
+
+/* Masking */
+#reaction > button > div:nth-child(2),
+#reaction > button > div:nth-child(3) {
+  mask-image: url('data:image/svg+xml,%3Csvg width="16" height="16" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill-rule="evenodd" clip-rule="evenodd" d="M1.3 28H28V0H1.3l1.4 1.3C6.2 4.6 8 9.3 8 14a17.2 17.2 0 01-6.7 14z" fill="%23FFC700" /%3E%3C/svg%3E');
+}
+
+#reaction > button > div[datatype="like"] + div {
+  mask-image: url('data:image/svg+xml,%3Csvg width="16" height="16" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill-rule="evenodd" clip-rule="evenodd" d="M2.7 28H28V0H1L.3 2.3l-.4 1v5.9l1.2.3c1.5.4 2.6.9 3.4 1.5.8.7 1.3 1.5 1.3 2.5a4.2 4.2 0 01-.4 1.7 1 1 0 000 .3c.6.8.9 1.6.8 2.5a2.3 2.3 0 01-1 1.8v.4c.3.7.3 1.4.1 2.1a3 3 0 01-1 1.7c-.5.3-.7.6-.7.9v.7c0 1-.4 1.9-1 2.4z" fill="%23FFC700" /%3E%3C/svg%3E');
+}
+
+#reaction > button > div[datatype="love"] + div {
+  mask-image: url('data:image/svg+xml,%3Csvg width="16" height="16" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill-rule="evenodd" clip-rule="evenodd" d="M0 23.2V28h28V0H0v.3a10.7 10.7 0 017.8 12.4 16 16 0 01-5.7 8.8L0 23.2z" fill="%23FFC700" /%3E%3C/svg%3E');
+}
+
+#reaction > button > span {
+  font-size: 12px;
+}
+
+/* ReactionPack */
